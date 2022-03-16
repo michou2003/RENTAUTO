@@ -1,0 +1,93 @@
+body{
+    background: url(../img/Vector\ 2.png);
+    
+}
+.contain
+{
+    margin-top: 160px;
+}
+.welcome{
+    font-size: 3rem;
+}
+.para-descript
+{
+    font-size: 1.5rem ;
+}
+.signup
+{
+    background-color: rgb(251, 185, 34);
+    color: white;
+    transition: 1s;
+}
+.signin
+{
+    border: 1px solid rgb(251, 185, 34);
+    color: rgb(251, 185, 34);
+    transition: 1s;
+}
+
+.signup:hover
+{
+    background-color: white !important ;
+    border:1px solid rgb(251, 185, 34) !important;
+    color: rgb(251, 185, 34);
+    transition: 1s;
+}
+.signin:hover
+{
+    background-color: rgb(251, 185, 34);
+    color: white;
+    transition: 1s;
+}
+.copy{
+    color: white;
+}
+
+/*Form login*/
+
+.form-contain{
+    padding-left: 40px ;
+    color: white;
+    border-radius: 15px;
+    background-image: url(../img/samuele-errico-piccarini-MyjVReZ5GLQ-unsplash.jpg);
+    background-size:contain ;
+}
+
+.form-contain-2{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.fill{
+    font-weight: 700;
+    font-size: 35px;
+}
+
+input[type=email], input[type=password],input[type=checkbox]
+{
+    background-color: rgb(78, 78, 78);
+    border: none;
+    color: white;
+}
+
+input[type=email]::placeholder, input[type=password]::placeholder
+{
+    color: white;
+}
+
+.submit{
+    color: rgb(251, 185, 34) ;
+    background-color: rgb(78, 78, 78);
+}
+
+.sign, .forgot{
+    color: rgb(251, 185, 34) ;
+}
+
+.nom_app{
+    color: rgb(251, 185, 34);
+}
+input[type=email]:focus, input[type=password]:focus
+{
+    box-shadow :none !important;
+    background-color: rgb(78, 78, 78);
+}
