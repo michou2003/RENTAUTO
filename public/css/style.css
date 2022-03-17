@@ -1,7 +1,19 @@
 body{
-    background: url(../img/Vector\ 2.png);
-    
+  overflow: hidden;  
 }
+
+.back-img
+{
+    z-index: -1000;
+}
+.back-img-2{
+    z-index: -5;
+    border-radius: 15px;
+}
+.back-img-form{
+    border-radius: 15px;
+}
+
 .contain
 {
     margin-top: 160px;
@@ -46,16 +58,12 @@ body{
 /*Form login*/
 
 .form-contain{
-    padding-left: 40px ;
     color: white;
     border-radius: 15px;
-    background-image: url(../img/samuele-errico-piccarini-MyjVReZ5GLQ-unsplash.jpg);
-    background-size:contain ;
 }
 
 .form-contain-2{
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-radius: 15px;
 }
 .fill{
     font-weight: 700;
