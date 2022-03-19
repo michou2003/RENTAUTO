@@ -5,8 +5,9 @@ Rentauto | Sign in
 @endsection
 
 @section('content')
+@include('partials.bg-vector')
 <div class="container  my-5" style="z-index: 1;">
-    <div class="row mx-2 d-flex justify-content-center justify-content-lg-end form-contain position-relative" >
+    <div class="row mx-2 d-flex justify-content-center justify-content-lg-end form-contain position-relative">
         <div class="col-md-9 col-10 bg-dark py-md-4 px-md-5 form-contain-2" style="z-index: 1;">
             <div class="d-flex justify-content-between pt-2 ">
                 <h5 class="nom_app ">Rentauto</h5>

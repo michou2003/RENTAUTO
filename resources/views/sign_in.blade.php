@@ -32,7 +32,7 @@
                                      <span style="color : rgb(251, 185, 34);">Remember</span>  me</label>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('user_gest') }}" class="btn submit">Go -></a>
+                                <a href="{{ route('login') }}" class="btn submit">Go -></a>
                                 <a href="" class="forgot text-decoration-none" >Forgot your password ?</a>
                             </div>
                             <br>

@@ -11,7 +11,6 @@
 
 <body>
     @yield('content')
-    <div class="d-none d-lg-flex position-absolute top-0 back-img"><img src="{{ asset('img/Vector 2.png') }}" alt="" width="1354" height="648"></div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
