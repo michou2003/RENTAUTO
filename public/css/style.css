@@ -4,6 +4,10 @@ body{
   background-color: #f4ffff;
 }
 
+:focus{
+    box-shadow: none !important;
+}
+
 .nav-link{
     color: rgb(70, 69, 69) !important;
     font-weight: 600;
@@ -111,18 +115,8 @@ input[type=email]::placeholder, input[type=password]::placeholder
 }
 input[type=email]:focus, input[type=password]:focus
 {
-    box-shadow :none !important;
     background-color: rgb(78, 78, 78);
 }
 
 /* USer Management */
 
-thead{
-    background-color: #dbfffb;
-}
-.user_2, .user_4, .user_6{
-    background-color: #ffffff;
-}
-.user_3, .user_5{
-    background-color: #dbfffb;
-}

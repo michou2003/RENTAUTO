@@ -9,15 +9,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarID">
+                    @if (Auth::user()->permissions === "Admin")
                     <div class="navbar-nav mx-4">
-                        <a class="nav-link active" aria-current="page" href="#" style="border-bottom: 2px solid rgb(251, 185, 34);">User Managment</a>
+                        <a class="nav-link user_" aria-current="page" href="{{ route('dashboard') }} " ">User Managment</a>
+                    </div>
+                    @else
+                    <div class=" navbar-nav mx-4">
+                            <a class="nav-link rent" aria-current="page" href="{{ route('dashboard') }}">Location</a>
                     </div>
                     <div class="navbar-nav mx-4">
-                        <a class="nav-link active" aria-current="page" href="#">Location</a>
+                        <a class="nav-link car" aria-current="page" href="{{ route('dashboard') }}">Voitures</a>
                     </div>
-                    <div class="navbar-nav mx-4">
-                        <a class="nav-link active" aria-current="page" href="#">Voitures</a>
-                    </div>
+                    @endif
                     <div class="navbar-nav mx-4 position-absolute end-0">
                         <a class="nav-link log-out active" aria-current="page" href="{{ route('logout') }}">log out</a>
                     </div>

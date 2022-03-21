@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
-Route::get('/dashboard', function () {
-    return view('user_management');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardUserController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard/desactive/{id}', [DashboardUserController::class, 'desactive'])->name('desactive_active_user');
+
+Route::get('/dashboard/delete/{id}', [DashboardUserController::class, 'delete'])->name('user.delete');
+
+Route::post('/dashboard/search', [DashboardUserController::class, 'search'])->name('user.search');
+
+Route::post('/dashboard/filter', [DashboardUserController::class, 'filterBy'])->name('user.filter');
+
 
 require __DIR__ . '/auth.php';
