@@ -11,7 +11,7 @@ Rentauto | Sign in
         <div class="col-md-9 col-10 bg-dark py-md-4 px-md-5 form-contain-2" style="z-index: 1;">
             <div class="d-flex justify-content-between pt-2 ">
                 <h5 class="nom_app ">Rentauto</h5>
-                <h5><a class="text-decoration-none sign" href="">Sign up</a></h5>
+                <h5><a class="text-decoration-none sign" href="{{ route('register') }}">Sign up</a></h5>
             </div>
             <div class="row py-md-5 py-4">
                 <div class="col-10 col-lg-6 mt-3">
@@ -25,7 +25,6 @@ Rentauto | Sign in
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     <form action="{{ route('login') }}" method="POST">
-
                         @csrf
                         <div class="mb-4">
                             <input id="email" type="email" name="email" class="form-control py-lg-2" id="" placeholder="Email" required autofocus>

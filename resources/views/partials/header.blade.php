@@ -18,7 +18,10 @@
                             <a class="nav-link rent" aria-current="page" href="{{ route('dashboard') }}">Location</a>
                     </div>
                     <div class="navbar-nav mx-4">
-                        <a class="nav-link car" aria-current="page" href="{{ route('dashboard') }}">Voitures</a>
+                        <a class="nav-link car" aria-current="page" href="{{ route('cars') }}">Voitures</a>
+                    </div>
+                    <div class="navbar-nav mx-4">
+                        <a class="nav-link car" aria-current="page" href="{{ route('cars') }}">Chauffeurs</a>
                     </div>
                     @endif
                     <div class="navbar-nav mx-4 position-absolute end-0">

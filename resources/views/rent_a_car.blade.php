@@ -6,3 +6,7 @@ Rentauto | Rent a car
 
 @section('content')
 @include('partials.header')
+
+
+
+@endsection

@@ -12,25 +12,38 @@ Rentauto | Sign in
             <div class="d-flex justify-content-between pt-2 ">
                 <h5 class="nom_app ">Rentauto</h5>
             </div>
-            <div class="row py-md-5 py-4">
-                <div class="col-10 col-lg-6 mt-3">
-                    <h5>Welcome</h5>
-                    <p class="d-lg-none d-flex">Please enter your informations</p>
-                    <p class="fill d-none d-lg-flex">Fill the form <br> to become <br> part of <br> team</p>
-                </div>
-                <div class="col-12 col-lg-6 mt-5">
-
+            <div class="row py-5">
+                <h3>Ajouter un nouvel utilisateur</h3>
+                <div class="col-12  mt-3">
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                    <form action="{{ route('register') }}" method="POST">
 
+                    <form action="
+                    @php
+                        if(isset($user)){ @endphp
+                        {{ route('user.update', ['id'=>$user->id]) }}
+                        @php
+                        }else
+                        {
+                        @endphp
+                        {{ route('user.new') }}
+                        @php
+                        }
+                    @endphp" method="POST">
                         @csrf
                         <div class="mb-4">
-                            <input id="name" type="text" name="name" class="form-control py-lg-2" placeholder="Fullname" required autofocus>
+                            <input id="name" type="text" name="name" value="@php if(isset($user)){ echo " $user->name";} @endphp"
+                            class="form-control py-lg-2" placeholder="Fullname" required autofocus>
                         </div>
 
                         <div class="mb-4">
-                            <input id="email" type="email" name="email" class="form-control py-lg-2" placeholder="Email" required>
+                            <input id="email" type="email" name="email" value="
+                            @php
+                                if(isset($user))
+                                {
+                                    echo " $user->email";
+                            }
+                            @endphp" class=" form-control py-lg-2" placeholder="Email" required>
                         </div>
                         <div class="mb-4">
                             <input type="password" name="password" id="password" class="form-control py-lg-2" id="password" placeholder="Password" required autocomplete="current-password">
@@ -38,8 +51,17 @@ Rentauto | Sign in
                         <div class="mb-4">
                             <input type="password" name="password_confirmation" id="password" class="form-control py-lg-2" id="password_confirmation" placeholder="Confirm Password" required autocomplete="current-password">
                         </div>
-                        <div class="d-flex justify-content-end mb-2">
-                            <button type="submit" class="btn submit">Register</button>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn submit"> @php
+                                if(isset($user))
+                                {
+                                echo 'Modifier';
+                                }
+                                else
+                                {
+                                echo 'Register';
+                                }
+                                @endphp</button>
                         </div>
                     </form>
                 </div>

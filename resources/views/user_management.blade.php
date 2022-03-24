@@ -6,13 +6,14 @@ Rentauto | User Managment
 
 @section('content')
 @include('partials.header')
+
 <div class="container">
     <div class="row my-5 d-flex justify-content-evenly">
         <form action="{{ route('user.search') }}" method="POST" class="search d-flex col-4 ">
 
             @csrf
             <div>
-                <input type="search" class="form-control border-0" name="nom" required id="" placeholder="Search user">
+                <input type="search" class="form-control border-0" name="nom" value="@php if(isset($_POST['nom'])){echo $_POST['nom'];}@endphp" required id="" placeholder="Search user">
             </div>
             <button type="submit" class="border-0 rounded" style="background-color:rgb(251, 185, 34);width:40px; height:36px;">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30" width="25px" height="30px">
@@ -27,9 +28,10 @@ Rentauto | User Managment
             <label for="filter" class=" form-label me-3 mt-1">Sort by</label>
             <div>
                 <select class="form-select border-0" name="filter" id="">
-                    <option>All</option>
-                    <option>Enabled</option>
-                    <option>Disabled</option>
+                    <option value="@php if(isset($_POST['filter'])){echo $_POST['filter'];}@endphp">@php if(isset($_POST['filter'])){echo $_POST['filter'];}else{echo 'Filtre...';}@endphp</option>
+                    <option value="All">All</option>
+                    <option value="Enabled">Enabled</option>
+                    <option value="Disabled">Disabled</option>
                 </select>
             </div>
             <button type="submit" class="border-0 rounded" style="background-color:rgb(251, 185, 34); width:40px; height:36px;">
@@ -40,10 +42,11 @@ Rentauto | User Managment
                 </svg>
             </button>
         </form>
-        <a href="" class="btn col-2 border" style="background-color: rgb(251, 185, 34);color:white; border-radius: 10px"> + New User</a>
+        <a href="{{ route('user.new') }}" class="btn col-2 border" style="background-color: rgb(251, 185, 34);color:white; border-radius: 10px"> + New User</a>
     </div>
-    <div class="row bg-white py-4 px-3 rounded">
-        <div class="col-12">
+    <div class="row ">
+        <div class="col-12 py-1 px-3 rounded bg-white">
+            <h2 class="my-3">Tableau de bord</h2>
             <table class="table table-striped table-responsive rounded">
                 <tbody>
                     <tr class="">
@@ -69,7 +72,7 @@ Rentauto | User Managment
                         <td>{{ $user->permissions }}</td>
                         <td> {{ $user->created_at}} </td>
 
-                        <td><a href=""><svg width="20" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <td><a href="{{ route('user.to_update', ['id' =>$user->id]) }}"><svg width="20" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21.7801 1.458L27.2001 7.442C28.1201 8.454 28.0401 10.17 27.2601 11.05L11.2401 28.694L0.120117 31.246L2.44012 18.97C2.44012 18.97 17.6401 2.184 18.4201 1.304C19.2001 0.445999 20.8601 0.445999 21.7801 1.458V1.458ZM16.3201 7.596L5.14012 19.938L7.36012 22.38L18.4401 9.95L16.3201 7.596ZM10.3801 25.702L21.5401 13.382L19.4001 11.006L8.22012 23.326L10.3801 25.702Z" fill="#699BF7" />
                                 </svg></a>
                         </td>

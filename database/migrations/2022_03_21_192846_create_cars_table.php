@@ -18,10 +18,10 @@ class CreateCarsTable extends Migration
             $table->primary('immatriculation');
             $table->mediumText('marque');
             $table->mediumText('model');
-            $table->timestamp('yearFabrication');
-            $table->decimal('tarifLocation');
+            $table->mediumText('yearFabrication');
+            $table->double('tarifLocation');
+            $table->enum('status', ['Disponible', 'Indisponible']);
             $table->timestamps();
-            
         });
     }
 

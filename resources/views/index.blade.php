@@ -12,7 +12,7 @@ Accueil | Rentauto
             <p class="text-center para-descript"> Votre plateforme de gestion de location de voitures</p>
             <div class="d-flex justify-content-md-around justify-content-evenly">
                 <a href="{{ route('login') }}" class="btn signin px-4"> Sign in</a>
-                <a href="{{ route('register') }}" class="btn signup px-4"> Sign up</a>
+                <a href="{{ route('login') }}" class="btn signup px-4"> Admin</a>
             </div>
         </div>
     </div>
