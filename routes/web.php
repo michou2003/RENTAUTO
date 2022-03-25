@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarsController;
+use App\Http\Controllers\DriversController;
 use App\Http\Controllers\DashboardUserController;
 
 /*
@@ -65,6 +66,8 @@ Route::post('/dashboard/search_driver', [DriversController::class, 'search'])->n
 Route::get('/dashboard/delete_driver/{id}', [DriversController::class, 'delete'])->name('driver.delete');
 
 Route::post('/dashboard/filter_driver', [DriversController::class, 'filterBy'])->name('driver.filter');
+
+Route::get('/dashboard/driver_new', [DriversController::class, 'new'])->name('driver.new');
 
 Route::post('/dashboard/driver_store', [DriversController::class, 'store'])->name('driver.store');
 

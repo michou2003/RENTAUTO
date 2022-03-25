@@ -26,7 +26,7 @@ Rentauto | Sign in
                         }else
                         {
                         @endphp
-                        {{ route('user.new') }}
+                        {{ route('user.store') }}
                         @php
                         }
                     @endphp" method="POST">

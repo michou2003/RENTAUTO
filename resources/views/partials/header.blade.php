@@ -21,7 +21,7 @@
                         <a class="nav-link car" aria-current="page" href="{{ route('cars') }}">Voitures</a>
                     </div>
                     <div class="navbar-nav mx-4">
-                        <a class="nav-link car" aria-current="page" href="{{ route('cars') }}">Chauffeurs</a>
+                        <a class="nav-link car" aria-current="page" href="{{ route('drivers') }}">Chauffeurs</a>
                     </div>
                     @endif
                     <div class="navbar-nav mx-4 position-absolute end-0">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChauffeursTable extends Migration
+class CreateDriversTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateChauffeursTable extends Migration
      */
     public function up()
     {
-        Schema::create('chauffeurs', function (Blueprint $table) {
+        Schema::create('drivers', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname');
+            $table->string('name');
             $table->mediumText('prenoms');
-            $table->mediumText('email');
+            $table->mediumText('email')->unique();
             $table->double('tarifChauf');
+            $table->enum('status', ['Disponible', 'Indisponible']);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateChauffeursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chauffeurs');
+        Schema::dropIfExists('drivers');
     }
 }
