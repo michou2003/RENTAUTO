@@ -3,21 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use App\Http\Controllers\LocationsController;
 
 class DashboardUserController extends Controller
 {
     public function dashboard()
     {
         if (Auth::user()->permissions === "Admin") {
-            $users = User::orderBy('name')->get();
+            $users = User::orderBy('name')->where('permissions', 'User')->get();
             return view('user_management', compact('users'));
         } else {
-            return view('rent_a_car');
+            $locations = Location::all();
+            return view('rent_a_car', compact('locations'));
         }
     }
 

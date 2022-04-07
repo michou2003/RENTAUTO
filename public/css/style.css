@@ -1,7 +1,5 @@
 body{
-    z-index : -100;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-  background-color: #f4ffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 
 :focus{
@@ -9,15 +7,15 @@ body{
 }
 
 .nav-link{
-    color: rgb(70, 69, 69) !important;
+    color: black !important;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 15px;
 }
 
 .log-out
 {
-    color: rgb(251, 185, 34) !important;
-    font-size: 20px !important;
+    color: black !important;
+    font-size: 15px !important;
     font-weight:450 !important;
 }
 
@@ -38,10 +36,12 @@ body{
     margin-top: 160px;
 }
 .welcome{
+    color: black;
     font-size: 3rem;
 }
 .para-descript
 {
+    color: black;
     font-size: 1.5rem ;
 }
 .signup
@@ -76,34 +76,53 @@ body{
 
 /*Form login*/
 
-.form-contain{
-    color: white;
-    border-radius: 15px;
-}
-
-.form-contain-2{
-    border-radius: 15px;
-}
 .fill{
     font-weight: 700;
     font-size: 35px;
+    color:white ;
 }
 
-input[type=email], input[type=password], input[type=checkbox], input[type=text]
+input[type=email], input[type=password], input[type=text],input[type=tel],input[type=datetime-local], input[type=number], .data
 {
-    background-color: rgb(78, 78, 78);
+    border: none;
+    border: 1px solid rgb(251, 185, 34);
+    transition: 1s;
+    color: black;
+    outline: none;
+
+}
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=tel]:focus, input[type=datetime-local]:focus, input[type=number]:focus
+{
+   border: none;
+    border-bottom: 1px solid rgb(251, 185, 34);
+    background: transparent;
+    /* background-color: rgba(156, 156, 156, 0.8); */
+    color: black;
+
+}
+
+
+
+input[type=submit]{
+    background-color: rgb(251, 185, 34);
     border: none;
     color: white;
+    border-radius: 20px;
+    transition: 1s;
+    cursor: pointer;
 }
 
-input[type=email]::placeholder, input[type=password]::placeholder, input[type=text]::placeholder
+
+input[type=email]::placeholder, input[type=password]::placeholder, input[type=text]::placeholder,
+input[type=tel]::placeholder, input[type=datetime-local]::placeholder, input[type=number]::placeholder
 {
-    color: white;
+    font-size: 15px;
+   color: rgb(80, 80, 80);
 }
 
 .submit{
-    color: rgb(251, 185, 34) ;
-    background-color: rgb(78, 78, 78);
+    color: white ;
+    background-color: rgb(251, 185, 34);
 }
 
 .sign, .forgot{
@@ -111,15 +130,16 @@ input[type=email]::placeholder, input[type=password]::placeholder, input[type=te
 }
 
 .nom_app{
+    font-family: Nunito;
     color: rgb(251, 185, 34);
 }
-input[type=email]:focus, input[type=password]:focus, input[type=text]:focus
-{
-    background-color: rgb(206, 205, 205);
+
+hr{
+    background-color: rgb(251, 185, 34);
 }
 
 .card{
-    box-shadow: 0px 0px 10px 4px rgba(156, 156, 156, 0.50);
+    /* box-shadow: 0px 0px 10px 4px rgba(156, 156, 156, 0.50); */
     transition: 1s;
 }
 .card:hover{
@@ -131,6 +151,50 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus
 {
     background-color:rgb(251, 185, 34) ;
     color: white;
+}
+
+.bg-voile{
+    background-color: rgba(156, 156, 156, 0.6);
+
+}
+
+input[type=search]::placeholder
+{
+    color: rgb(80, 80, 80);
+}
+
+input[type=search]:focus
+{
+    background-color: bisque;
+    color: rgb(58, 58, 58);
+}
+
+.new{
+    background:transparent;
+    color:rgb(251, 185, 34); 
+    border-radius: 10px;
+    border:1px solid rgb(251, 185, 34);
+    transition: 1s;
+
+}
+.new:hover{
+    background-color: rgb(251, 185, 34);
+    color:white;
+     border-radius: 10px;
+     transition: 1s;
+     transform:scale(1.1);
+}
+
+.active_{
+    border-bottom: 2px solid rgb(251, 185, 34);
+}
+
+#radioBox{
+    display: none;
+}
+
+#avanceBox{
+    display: none;
 }
 
 /* USer Management */

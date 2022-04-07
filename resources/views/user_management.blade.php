@@ -10,7 +10,7 @@ Rentauto | User Managment
 <div class="container">
     <div class="row my-5 d-flex justify-content-evenly">
         <form action="{{ route('user.search') }}" method="POST" class="search d-flex col-4 ">
-
+            
             @csrf
             <div>
                 <input type="search" class="form-control border-0" name="nom" value="@php if(isset($_POST['nom'])){echo $_POST['nom'];}@endphp" required id="" placeholder="Search user">
@@ -28,7 +28,7 @@ Rentauto | User Managment
             <label for="filter" class=" form-label me-3 mt-1">Sort by</label>
             <div>
                 <select class="form-select border-0" name="filter" id="">
-                    <option value="@php if(isset($_POST['filter'])){echo $_POST['filter'];}@endphp">@php if(isset($_POST['filter'])){echo $_POST['filter'];}else{echo 'Filtre...';}@endphp</option>
+                    <option class="text-white" value="@php if(isset($_POST['filter'])){echo $_POST['filter'];}@endphp">@php if(isset($_POST['filter'])){echo $_POST['filter'];}else{echo 'Filtre...';}@endphp</option>
                     <option value="All">All</option>
                     <option value="Enabled">Enabled</option>
                     <option value="Disabled">Disabled</option>
@@ -45,9 +45,9 @@ Rentauto | User Managment
         <a href="{{ route('user.new') }}" class="btn col-2 border" style="background-color: rgb(251, 185, 34);color:white; border-radius: 10px"> + New User</a>
     </div>
     <div class="row ">
-        <div class="col-12 py-1 px-3 rounded bg-white">
+        <div class="col-12 py-1 px-3 rounded bg-white table-responsive">
             <h2 class="my-3">Tableau de bord</h2>
-            <table class="table table-striped table-responsive rounded">
+            <table class="table table-striped rounded">
                 <tbody>
                     <tr class="">
                         <th>Fullname</th>
@@ -64,9 +64,9 @@ Rentauto | User Managment
                         <td> {{ $user->email }} </td>
                         <td>
                             @if ($user->status === "Enabled")
-                            <a href="{{ route('desactive_active_user' , ['id' => $user->id]) }}" class="btn btn-primary">{{ $user->status }}</a>
+                            <a href="{{ route('desactive_active_user' , ['id' => $user->id]) }}" class="btn btn-green">{{ $user->status }}</a>
                             @else
-                            <a href="{{ route('desactive_active_user' , ['id' => $user->id]) }}" class="btn btn-danger">{{ $user->status }}</a>
+                            <a href="{{ route('desactive_active_user' , ['id' => $user->id]) }}" class="btn btn-red">{{ $user->status }}</a>
                             @endif
                         </td>
                         <td>{{ $user->permissions }}</td>

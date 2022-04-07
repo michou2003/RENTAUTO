@@ -6,18 +6,21 @@ Rentauto | Cars
 
 @section('content')
 @include('partials.header')
+
+
+
 <div class="container">
     <div class="row my-5 d-flex justify-content-evenly">
         <form action="{{ route('car.search') }}" method="POST" class="search d-flex col-4 ">
 
             @csrf
             <div>
-                <input type="search" class="form-control border-0" name="car_name" required id="" value="@php if(isset($_POST['car_name'])){echo $_POST['car_name'];}@endphp" placeholder="Search car">
+                <input type="search" class="form-control bg-transparent" style=" border:none; border-bottom:2px solid rgb(251, 185, 34);" name="car_name" required id="" value="@php if(isset($_POST['car_name'])){echo $_POST['car_name'];}@endphp" placeholder="Search car">
             </div>
-            <button type="submit" class="border-0 rounded" style="background-color:rgb(251, 185, 34);width:40px; height:36px;">
+            <button type="submit" class="border-0 bg-transparent" style="width:40px; height:36px;">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30" width="25px" height="30px">
                     <g id="surface8234173">
-                        <path style=" stroke:none;fill-rule:nonzero;fill:white;fill-opacity:1;" d="M 13 3 C 7.488281 3 3 7.488281 3 13 C 3 18.511719 7.488281 23 13 23 C 15.398438 23 17.597656 22.148438 19.324219 20.734375 L 25.292969 26.707031 C 25.542969 26.96875 25.917969 27.074219 26.265625 26.980469 C 26.617188 26.890625 26.890625 26.617188 26.980469 26.265625 C 27.074219 25.917969 26.96875 25.542969 26.707031 25.292969 L 20.734375 19.320312 C 22.148438 17.597656 23 15.398438 23 13 C 23 7.488281 18.511719 3 13 3 Z M 13 5 C 17.429688 5 21 8.570312 21 13 C 21 17.429688 17.429688 21 13 21 C 8.570312 21 5 17.429688 5 13 C 5 8.570312 8.570312 5 13 5 Z M 13 5 " />
+                        <path style=" stroke:none;fill-rule:nonzero;fill:rgb(251, 185, 34);fill-opacity:1;" d="M 13 3 C 7.488281 3 3 7.488281 3 13 C 3 18.511719 7.488281 23 13 23 C 15.398438 23 17.597656 22.148438 19.324219 20.734375 L 25.292969 26.707031 C 25.542969 26.96875 25.917969 27.074219 26.265625 26.980469 C 26.617188 26.890625 26.890625 26.617188 26.980469 26.265625 C 27.074219 25.917969 26.96875 25.542969 26.707031 25.292969 L 20.734375 19.320312 C 22.148438 17.597656 23 15.398438 23 13 C 23 7.488281 18.511719 3 13 3 Z M 13 5 C 17.429688 5 21 8.570312 21 13 C 21 17.429688 17.429688 21 13 21 C 8.570312 21 5 17.429688 5 13 C 5 8.570312 8.570312 5 13 5 Z M 13 5 " />
                     </g>
                 </svg>
             </button>
@@ -26,29 +29,29 @@ Rentauto | Cars
             @csrf
             <label for="filter" class="form-label me-3 mt-1">Sort by</label>
             <div>
-                <select class="form-select border-0" name="filter" id="">
+                <select class="form-select" style=" border:none; border-bottom:2px solid rgb(251, 185, 34);" name="filter" id="">
                     <option value="@php if(isset($_POST['filter'])){echo $_POST['filter'];}@endphp">@php if(isset($_POST['filter'])){echo $_POST['filter'];}else{echo 'Filtre...';}@endphp</option>
                     <option value="All">All</option>
                     <option value="Disponible">Disponible</option>
                     <option value="Indisponible">Indisponible</option>
                 </select>
             </div>
-            <button type="submit" class="border-0 rounded" style="background-color:rgb(251, 185, 34); width:40px; height:36px;">
+            <button type="submit" class="border-0 bg-transparent" style="width:40px; height:36px;">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30" width="25px" height="30px">
                     <g id="surface8234173">
-                        <path style=" stroke:none;fill-rule:nonzero;fill:white;fill-opacity:1;" d="M 13 3 C 7.488281 3 3 7.488281 3 13 C 3 18.511719 7.488281 23 13 23 C 15.398438 23 17.597656 22.148438 19.324219 20.734375 L 25.292969 26.707031 C 25.542969 26.96875 25.917969 27.074219 26.265625 26.980469 C 26.617188 26.890625 26.890625 26.617188 26.980469 26.265625 C 27.074219 25.917969 26.96875 25.542969 26.707031 25.292969 L 20.734375 19.320312 C 22.148438 17.597656 23 15.398438 23 13 C 23 7.488281 18.511719 3 13 3 Z M 13 5 C 17.429688 5 21 8.570312 21 13 C 21 17.429688 17.429688 21 13 21 C 8.570312 21 5 17.429688 5 13 C 5 8.570312 8.570312 5 13 5 Z M 13 5 " />
+                        <path style=" stroke:none;fill-rule:nonzero;fill:rgb(251, 185, 34);fill-opacity:1;" d="M 13 3 C 7.488281 3 3 7.488281 3 13 C 3 18.511719 7.488281 23 13 23 C 15.398438 23 17.597656 22.148438 19.324219 20.734375 L 25.292969 26.707031 C 25.542969 26.96875 25.917969 27.074219 26.265625 26.980469 C 26.617188 26.890625 26.890625 26.617188 26.980469 26.265625 C 27.074219 25.917969 26.96875 25.542969 26.707031 25.292969 L 20.734375 19.320312 C 22.148438 17.597656 23 15.398438 23 13 C 23 7.488281 18.511719 3 13 3 Z M 13 5 C 17.429688 5 21 8.570312 21 13 C 21 17.429688 17.429688 21 13 21 C 8.570312 21 5 17.429688 5 13 C 5 8.570312 8.570312 5 13 5 Z M 13 5 " />
                     </g>
                 </svg>
             </button>
         </form>
         <!-- Button trigger modal -->
 
-        <button data-bs-toggle="modal" data-bs-target="#modelId" type="button" class="btn col-2 border" style="background-color: rgb(251, 185, 34);color:white; border-radius: 10px">
+        <button data-bs-toggle="modal" data-bs-target="#modelId" type="button" class="new btn col-2">
             +Car
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal fade mt-5" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -58,12 +61,14 @@ Rentauto | Cars
                     <div class="modal-body">
                         <form action="{{ route('car.store') }}" method="POST">
                             @csrf
-                            <input type="text" name="immatriculation" id="immatri" class="form-control my-3" placeholder="Immatriculation" required>
-                            <input type="text" name="marque" id="mark" class="form-control my-3" placeholder="Marque" required>
-                            <input type="text" name="model" id="model" class="form-control my-3" placeholder="Modèle" required>
-                            <input type="text" name="yearF" id="year" class="form-control my-3" placeholder="Année de fabrication" required>
-                            <input type="number" name="tarifL" id="tarif" class="form-control my-3" placeholder="Tarif de location" required>
-                            <button type="submit" class="btn btn-info" id='submit'>Ajouter</button>
+                            <input type="text" name="immatriculation" id="immatri" class=" form-control my-3" placeholder="Immatriculation" required>
+                            <input type="text" name="marque" id="mark" class=" form-control my-3" placeholder="Marque" required>
+                            <input type="text" name="model" id="model" class=" form-control my-3" placeholder="Modèle" required>
+                            <input type="text" name="yearF" id="year" class=" form-control my-3" placeholder="Année de fabrication" required>
+                            <input type="number" name="tarifL" id="tarif" class=" form-control my-3" placeholder="Tarif de location" required>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn submit" id='submit'>Ajouter</button>
+                            </div>
 
                         </form>
 
@@ -75,7 +80,19 @@ Rentauto | Cars
 
 
     </div>
-    <div class="row bg-white py-4 px-3 d-flex justify-content-evenly rounded">
+    <div class="row py-4 px-3 d-flex justify-content-evenly rounded">
+        @isset($issu)
+        @if ($issu === "success")
+        <div class="alert alert-success">
+            Voiture retirée avec succès
+        </div>
+        @else
+        <div class="alert alert-danger">
+            Impossible de retirer cette voiture car elle est louée
+        </div>
+        @endif
+
+        @endisset
         @forelse ($cars as $car)
         <div class="col-lg-3 col-md-6 col-11">
             <div class="card my-lg-2 my-4 position-relative">

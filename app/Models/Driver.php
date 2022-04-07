@@ -9,6 +9,7 @@ class Driver extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'name',
         'prenoms',
@@ -16,4 +17,9 @@ class Driver extends Model
         'tarifChauf',
         'status'
     ];
+
+    public function location()
+    {
+        return $this->hasOne(Location::class);
+    }
 }

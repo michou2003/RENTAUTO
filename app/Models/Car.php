@@ -16,4 +16,10 @@ class Car extends Model
         'yearFabrication',
         'tarifLocation',
     ];
+
+    public function location()
+    {
+        return $this->hasOne(Location::class, 'car_immatriculation');
+    }
+
 }

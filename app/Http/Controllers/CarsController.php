@@ -21,9 +21,17 @@ class CarsController extends Controller
     public function delete($immatriculation)
     {
         if (Auth::user()->permissions === "User") {
-            $car = Car::where('immatriculation', $immatriculation)->delete();
+
+            $car = Car::where('immatriculation', $immatriculation)->first();
+            if ($car->status === 'Indisponible') {
+                $issu = 'echec';
+            } else {
+                $car = Car::where('immatriculation', $immatriculation)->delete();
+                $issu = 'success';
+            }
         }
-        return $this->cars();
+        $cars = Car::orderBy('marque')->get();
+        return view('cars', compact('cars', 'issu'));
     }
 
     public function search(Request $car)
