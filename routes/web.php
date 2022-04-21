@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::controller(DashboardUserController::class)->group(function () {
 
-        Route::get('/dashboard', [DashboardUserController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard',  'dashboard')->name('dashboard');
 
         Route::get('/dashboard/user/desactive_user/{id}', 'desactive')->name('desactive_active_user');
 
@@ -44,6 +44,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard/user/user_to_update/{id}', 'to_update')->name('user.to_update');
 
         Route::post('/dashboard/user/update_user/{id}', 'update')->name('user.update');
+
+        Route::get('/dashboard/statistics', 'view_bests_customers')->name('meilleurs_clients');
+
+        Route::post('/dashboard/statistics/bests_customers', 'bests_customers')->name('best_customers');
+
+        Route::get('/dashboard/statistics/bests_rentalcars', 'view_bests_rentalcars')->name('meilleures_voitures');
+
+        Route::post('/dashboard/statistics/bests_rentalcars', 'bests_rentalcars')->name('bests_rentalcars');
+
+        Route::get('/dashboard/statistics/chiffre_affaire', 'view_chiffre_affaire')->name('chiffre');
+
+        Route::post('/dashboard/statistics/chiffre_affaire', 'chiffre_affaire')->name('chiffre_affaire');
     });
 
     Route::controller(CarsController::class)->group(function () {
@@ -80,6 +92,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard/drivers/driver_to_update/{id}',  'to_update')->name('driver.to_update');
 
         Route::post('/dashboard/drivers/update_driver/{id}',  'update')->name('driver.update');
+
+        Route::post('/dashboard/drivers/tarif/',  'changer_tarif')->name('driver.tarif');
     });
 
     Route::controller(LocationsController::class)->group(function () {

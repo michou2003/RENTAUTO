@@ -18,7 +18,7 @@ Rentauto | Sign in
     </h3>
     <div class="row p-5  d-flex justify-content-lg-start justify-content-center  position-relative">
 
-        <div class="col-10 col-lg-6 ">
+        <div class="col-10 col-lg-6 h-100">
 
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -44,6 +44,7 @@ Rentauto | Sign in
                     }
                     @endphp" class=" form-control py-lg-2" placeholder="Email" required>
                 </div>
+                
                 <div class="d-flex justify-content-between">
                     <!-- <a href="{{ route('drivers') }}" class="form-control btn submit">< Retour</a> -->
                     <button type="submit" class="form-control btn submit"> @php
@@ -60,7 +61,8 @@ Rentauto | Sign in
                 </div>
             </form>
         </div>
-        <div class="col-6 "></div>
+        <div class="col-10 col-lg-6 " >
+        </div>
     </div>
 </div>
 @endsection

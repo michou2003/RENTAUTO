@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -126,5 +127,80 @@ class DashboardUserController extends Controller
     {
         $user = User::findOrFail($id);
         return view('new_user', compact('user'));
+    }
+
+    public function view_bests_customers()
+    {
+        $bests_customers = DB::table('clients')
+            ->join('locations', 'clients.id', '=', 'locations.client_id')
+            ->select('clients.noms', 'clients.prenoms', 'clients.email', DB::raw('count(locations.client_id) as nbre'))
+            ->groupBy('locations.client_id')
+            ->orderBy('nbre', 'desc')
+            ->limit(10)
+            ->get();
+        return view('10_bests_customers', compact('bests_customers'));
+    }
+
+    public function bests_customers(Request $request)
+    {
+        if (isset($request->debut_periode) && isset($request->fin_periode)) {
+            if ($request->debut_periode > $request->fin_periode) {
+                return redirect()->route('meilleurs_clients')->with('error', 'La fin de la période doit être supérieure au début ');
+            } else {
+                $bests_customers = DB::table('clients')
+                    ->join('locations', 'clients.id', '=', 'locations.client_id')
+                    ->select('clients.noms', 'clients.prenoms', 'clients.email', DB::raw('count(locations.client_id) as nbre'))
+                    ->whereBetween('date_heure_debut', [$request->debut_periode, $request->fin_periode])
+                    ->groupBy('locations.client_id')
+                    ->orderBy('nbre', 'desc')
+                    ->limit(10)
+                    ->get();
+                return view('10_bests_customers', compact('bests_customers'));
+            }
+        }
+    }
+
+    public function view_bests_rentalcars()
+    {
+        $bests_rentalcars = DB::table('cars')
+            ->join('locations', 'cars.immatriculation', '=', 'locations.car_immatriculation')
+            ->select('cars.immatriculation', 'cars.marque', 'cars.model', 'cars.yearFabrication', DB::raw('count(locations.car_immatriculation) as nbre'))
+            ->groupBy('locations.car_immatriculation')
+            ->orderBy('nbre', 'desc')
+            ->limit(10)
+            ->get();
+        return view('bests_rentalcars', compact('bests_rentalcars'));
+    }
+
+    public function bests_rentalcars(Request $request)
+    {
+        $bests_rentalcars = DB::table('cars')
+            ->join('locations', 'cars.immatriculation', '=', 'locations.car_immatriculation')
+            ->select('cars.immatriculation', 'cars.marque', 'cars.model', 'cars.yearFabrication', DB::raw('count(locations.car_immatriculation) as nbre'))
+            ->whereBetween('date_heure_debut', [$request->debut_periode, $request->fin_periode])
+            ->groupBy('locations.car_immatriculation')
+            ->orderBy('nbre', 'desc')
+            ->limit(10)
+            ->get();
+
+        return view('bests_rentalcars', compact('bests_rentalcars'));
+    }
+
+    public function view_chiffre_affaire()
+    {
+        $chiffre_affaire = DB::table('locations')
+        ->selectRaw('SUM(net_a_payer) as profit')
+            ->get();
+
+        return view('chiffre_affaire', compact('chiffre_affaire'));
+    }
+
+    public function chiffre_affaire(Request $request)
+    {
+        $chiffre_affaire = DB::table('locations')
+            ->selectRaw('SUM(net_a_payer) as profit')
+            ->whereBetween('date_heure_debut', [$request->debut_periode, $request->fin_periode])
+            ->get();
+        return view('chiffre_affaire', compact('chiffre_affaire'));
     }
 }

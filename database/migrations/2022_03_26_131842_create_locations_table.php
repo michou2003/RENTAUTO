@@ -23,6 +23,7 @@ class CreateLocationsTable extends Migration
             $table->foreignId('client_id')->constrained();
             $table->foreignId('driver_id')->constrained();
             $table->foreign('car_immatriculation')->references('immatriculation')->on('cars');
+            $table->double('net_a_payer')->nullable();
             $table->timestamps();
         });
     }
@@ -37,3 +38,5 @@ class CreateLocationsTable extends Migration
         Schema::dropIfExists('locations');
     }
 }
+
+

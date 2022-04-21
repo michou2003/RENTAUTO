@@ -1,13 +1,13 @@
 @extends('layout.app')
 
 @section('title')
-Rentauto | Sign in
+Rentauto | Se connecter
 @endsection
 
 @section('content')
-<div class="container mt-5 border">
-    <div class="row m-5 p-5 border d-flex justify-content-lg-start justify-content-center  position-relative">
-        <div class="col-10 col-lg-6 " style="z-index: 1;">
+<div class="container mt-5 ">
+    <div class="row m-5 p-5  d-flex justify-content-lg-start justify-content-center  position-relative">
+        <div class="col-12 col-lg-6 " style="z-index: 1;">
             <div class="d-flex justify-content-between  ">
                 <h3 class="nom_app">Rentauto</h3>
             </div>
@@ -33,8 +33,8 @@ Rentauto | Sign in
 
             </form>
         </div>
-        <div class="d-none d-lg-flex part-left col-lg-6 border">
-
+        <div class="d-none d-lg-flex justify-content-center part-left col-lg-6 ">
+            <img src="{{ asset('img/undraw_Login_re_4vu2.png') }}" alt="" width="500">
         </div>
 
     </div>

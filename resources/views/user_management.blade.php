@@ -7,15 +7,15 @@ Rentauto | User Managment
 @section('content')
 @include('partials.header')
 
-<div class="container">
+<div class="container-fluid">
     <div class="row my-5 d-flex justify-content-evenly">
         <form action="{{ route('user.search') }}" method="POST" class="search d-flex col-4 ">
-            
+
             @csrf
             <div>
-                <input type="search" class="form-control border-0" name="nom" value="@php if(isset($_POST['nom'])){echo $_POST['nom'];}@endphp" required id="" placeholder="Search user">
+                <input type="search" class="bg-transparent form-control" style=" border:none; border-bottom:2px solid blueviolet;" name="nom" value="@php if(isset($_POST['nom'])){echo $_POST['nom'];}@endphp" required id="" placeholder="Search user">
             </div>
-            <button type="submit" class="border-0 rounded" style="background-color:rgb(251, 185, 34);width:40px; height:36px;">
+            <button type="submit" class="border-0 rounded" style="background-color:blueviolet;width:40px; height:36px;">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30" width="25px" height="30px">
                     <g id="surface8234173">
                         <path style=" stroke:none;fill-rule:nonzero;fill:white;fill-opacity:1;" d="M 13 3 C 7.488281 3 3 7.488281 3 13 C 3 18.511719 7.488281 23 13 23 C 15.398438 23 17.597656 22.148438 19.324219 20.734375 L 25.292969 26.707031 C 25.542969 26.96875 25.917969 27.074219 26.265625 26.980469 C 26.617188 26.890625 26.890625 26.617188 26.980469 26.265625 C 27.074219 25.917969 26.96875 25.542969 26.707031 25.292969 L 20.734375 19.320312 C 22.148438 17.597656 23 15.398438 23 13 C 23 7.488281 18.511719 3 13 3 Z M 13 5 C 17.429688 5 21 8.570312 21 13 C 21 17.429688 17.429688 21 13 21 C 8.570312 21 5 17.429688 5 13 C 5 8.570312 8.570312 5 13 5 Z M 13 5 " />
@@ -27,22 +27,23 @@ Rentauto | User Managment
             @csrf
             <label for="filter" class=" form-label me-3 mt-1">Sort by</label>
             <div>
-                <select class="form-select border-0" name="filter" id="">
+                <select class="form-select bg-transparent" style=" border:none; border-bottom:2px solid blueviolet;" name="filter" id="">
                     <option class="text-white" value="@php if(isset($_POST['filter'])){echo $_POST['filter'];}@endphp">@php if(isset($_POST['filter'])){echo $_POST['filter'];}else{echo 'Filtre...';}@endphp</option>
                     <option value="All">All</option>
                     <option value="Enabled">Enabled</option>
                     <option value="Disabled">Disabled</option>
                 </select>
             </div>
-            <button type="submit" class="border-0 rounded" style="background-color:rgb(251, 185, 34); width:40px; height:36px;">
+            <button type="submit" class="border-0 rounded" style="background-color:blueviolet; width:40px; height:36px;">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30" width="25px" height="30px">
                     <g id="surface8234173">
                         <path style=" stroke:none;fill-rule:nonzero;fill:white;fill-opacity:1;" d="M 13 3 C 7.488281 3 3 7.488281 3 13 C 3 18.511719 7.488281 23 13 23 C 15.398438 23 17.597656 22.148438 19.324219 20.734375 L 25.292969 26.707031 C 25.542969 26.96875 25.917969 27.074219 26.265625 26.980469 C 26.617188 26.890625 26.890625 26.617188 26.980469 26.265625 C 27.074219 25.917969 26.96875 25.542969 26.707031 25.292969 L 20.734375 19.320312 C 22.148438 17.597656 23 15.398438 23 13 C 23 7.488281 18.511719 3 13 3 Z M 13 5 C 17.429688 5 21 8.570312 21 13 C 21 17.429688 17.429688 21 13 21 C 8.570312 21 5 17.429688 5 13 C 5 8.570312 8.570312 5 13 5 Z M 13 5 " />
                     </g>
                 </svg>
             </button>
+
         </form>
-        <a href="{{ route('user.new') }}" class="btn col-2 border" style="background-color: rgb(251, 185, 34);color:white; border-radius: 10px"> + New User</a>
+        <a href="{{ route('user.new') }}" class="new btn col-2"> + New User</a>
     </div>
     <div class="row ">
         <div class="col-12 py-1 px-3 rounded bg-white table-responsive">

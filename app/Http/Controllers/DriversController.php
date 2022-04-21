@@ -28,8 +28,14 @@ class DriversController extends Controller
     {
         if (Auth::user()->permissions === "User") {
             $driver = Driver::findOrFail($id);
-            $driver->delete();
-            return $this->drivers();
+            if ($driver->status == 'Disponible') {
+                $driver->delete();
+                $issu = 'success';
+            } else {
+                $issu = 'echec';
+            }
+            $drivers = Driver::orderBy('name')->get();
+            return view('drivers', compact('drivers', 'issu'));
         }
     }
 
@@ -69,7 +75,14 @@ class DriversController extends Controller
                 'status' => 'Disponible',
             ]);
 
-            return $this->drivers();
+            if ($driver) {
+                $bool = true;
+            } else {
+                $bool = false;
+            }
+            $drivers = Driver::orderBy('name')->get();
+
+            return view('drivers', compact('drivers', 'bool'));
         }
     }
 
@@ -97,4 +110,20 @@ class DriversController extends Controller
             return $this->drivers();
         }
     }
+
+    // public function changer_tarif(Request $request)
+    // {
+    //     if (Auth::user()->permissions === "User") {
+    //         $request->validate([
+    //             'tarif' => ['required', 'numeric']
+    //         ]);
+
+
+    //         // $driver->update([
+    //         //     'tarifChauf' => $request->tarif
+    //         // ]);
+
+
+    //     }
+    // }
 }

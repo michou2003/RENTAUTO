@@ -20,7 +20,8 @@ class Location extends Model
         'client_id',
         'driver_id',
         'status',
-        'avance'
+        'avance',
+        'net_a_payer'
     ];
 
     public function car()

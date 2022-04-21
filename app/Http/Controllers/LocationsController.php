@@ -24,11 +24,9 @@ class LocationsController extends Controller
     public function search(Request $request)
     {
         if (Auth::user()->permissions === "User") {
-            $locations = DB::table('clients')
-                ->join('locations', 'clients.id', '=', 'locations.client_id')
-                ->select('clients.noms', 'clients.prenoms')
-                ->where('clients.noms', 'like', $request->nom . '%')
-                ->get();
+            $client = Client::where('noms', 'like', $request->nom . '%')->get();
+            dd($client);
+            $locations = Location::where('client_id', $client->id);
             dd($locations);
             return view('locations', compact('locations'));
         }
@@ -41,31 +39,31 @@ class LocationsController extends Controller
                 return $this->locations();
             } else if ($request->filter === "En cours") {
                 $locations = Location::where('status', 1)
-                    ->orderBy('date_debut')
+                    ->orderBy('date_heure_debut')
                     ->get();
             } else {
                 $locations = Location::where('status', 0)
-                    ->orderBy('date_debut')
+                    ->orderBy('date_heure_debut')
                     ->get();
             }
             return view('rent_a_car', compact('locations'));
         }
     }
-
+    
     public function new()
     {
         $cars = Car::where('status', 'Disponible')->get();
         $drivers = Driver::where('status', 'Disponible')->get();
         return view('new_location', compact('cars', 'drivers'));
     }
-
+    
     public function store(Request $request)
     {
         $cars = Car::where('immatriculation', $request->car_immatriculation)->where('status', 'Indisponible')->get();
         //dd($cars->count());
         if ($cars->count() === 0) {
-
-
+            
+            
             $request->validate([
                 'nom' => ['required', 'string', 'max:255'],
                 'prenoms' => ['required', 'string', 'max:255'],
@@ -82,7 +80,7 @@ class LocationsController extends Controller
             } else {
                 $driver = null;
             }
-
+            
             $request->validate([
                 'date_heure_debut' => ['required'],
             ]);
@@ -93,6 +91,11 @@ class LocationsController extends Controller
                     'prenoms' => $request->prenoms,
                     'email' => $request->email,
                     'telephone' => $request->telephone,
+                ]);
+            } else {
+                $client = Client::where('email', $request->email);
+                $client->update([
+                    'telephone' => $request->telephone
                 ]);
             }
             if ($request->boolavance == "oui") {
@@ -108,7 +111,7 @@ class LocationsController extends Controller
             $date_heure_debut = $date_heure_debut->format('Y-m-d H');
             // dd($date_heure_debut);
             $client = Client::where('email', $request->email)->first();
-            $request = Location::create([
+            $location = Location::create([
                 'client_id' => $client->id,
                 'driver_id' => $driver,
                 'car_immatriculation' => $request->car_immatriculation,
@@ -116,17 +119,23 @@ class LocationsController extends Controller
                 'avance' => $avance,
                 'date_heure_debut' => $date_heure_debut,
             ]);
+            if ($location) {
+                $bool = true;
+            } else {
+                $bool = false;
+            }
             $car = Car::where('immatriculation', $request->car_immatriculation);
             $car->update([
                 'status' => 'Indisponible',
             ]);
-
-            return $this->locations();
+            
+            $locations = Location::all();
+            return view('rent_a_car', compact('locations', 'bool'));
         } else {
             return redirect()->route('locations')->with('echec', 'Cette voiture est deja en cours de location');
         }
     }
-
+    
     public function to_update($id)
     {
         $location = Location::findOrFail($id);
@@ -141,41 +150,60 @@ class LocationsController extends Controller
         ]);
 
         $i = 1;
-        if(isset($request->driver))
-        {
+        if (isset($request->driver)) {
             $montantChauffeur = $location->driver->tarifChauf;
-        }
-        else
-        {
-            $montantChauffeur = 0;   
+        } else {
+            $montantChauffeur = 0;
         }
         $montantCar = $location->car->tarifLocation;
-        $net_a_payer = 0;
-        $date_debut = new DateTime( $request->date_heure_debut);
-        $date_retour = new DateTime( $request->date_heure_retour);
+        $montant = 0;
+        $date_debut = new DateTime($request->date_heure_debut);
+        $date_retour = new DateTime($request->date_heure_retour);
         while ($date_debut < $date_retour) {
             $date_debut->add(new DateInterval('PT' . $i . 'H'));
             if ((int)$date_debut->format('H') <= 18) {
-                $net_a_payer += ($montantChauffeur + $montantCar);
+                $montant += ($montantChauffeur + $montantCar);
             } else {
-                $net_a_payer += (2 * $montantChauffeur + $montantCar);
+                $montant += (2 * $montantChauffeur + $montantCar);
             }
-           
         }
 
         if ((int)$date_retour->format('i') != 0) {
             if ((int)$date_retour->format('H') < 18) {
-                $net_a_payer += ($montantChauffeur + $montantCar);
+                $montant += ($montantChauffeur + $montantCar);
             } else {
-                $net_a_payer += (2 * $montantChauffeur + $montantCar);
+                $montant += (2 * $montantChauffeur + $montantCar);
             }
         }
 
-        return view('factureLocation', compact('location','net_a_payer'));
+        $net_a_payer = $montant - $location->avance;
+
+        $location->update([
+            'net_a_payer' => $net_a_payer
+        ]);
+
+        return view('paiementLocation', compact('location'));
     }
 
-    public function validerPaiement($id, $immatriculation, $idChauffeur)
+    public function validerPaiement($id)
     {
+        $location = Location::findOrFail($id);
+        $location->update([
+            'status' => 0
+        ]);
+        $car = Car::where('immatriculation', $location->car_immatriculation);
+        // dd($car);
+        $car->update([
+            'status' => 'Disponible'
+        ]);
 
+        if ($location->driver_id !== null) {
+            $driver = Driver::find($location->driver_id);
+            $driver->update([
+                'status' => 'Disponible'
+            ]);
+        }
+
+        return $this->locations();
     }
 }

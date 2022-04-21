@@ -74,19 +74,26 @@ class CarsController extends Controller
                 'yearFabrication' => $request->yearF,
                 'tarifLocation' => $request->tarifL,
             ]);
-            return $this->cars();
+
+            if ($car) {
+                $bool = true;
+            } else {
+                $bool = false;
+            }
+            $cars = Car::orderBy('marque')->get();
+            return view('cars', compact('cars','bool'));
         }
     }
 
     public function update(Request $request, $immatriculation)
     {
         if (Auth::user()->permissions === "User") {
-            // $request->validate([
-            //     'immatriculation' => ['required', 'string', 'max:7', 'unique:cars'],
-            //     'marque' => ['required', 'string', 'max:255'],
-            //     'model' => ['required', 'string', 'max:255'],
-            //     'yearF' => ['required', 'string', 'max:4'],
-            // ]);
+            $request->validate([
+                'immatriculation' => ['required', 'string', 'unique:cars'],
+                'marque' => ['required', 'string', 'max:255'],
+                'model' => ['required', 'string', 'max:255'],
+                'yearF' => ['required', 'string'],
+            ]);
             $request->immatriculation = htmlspecialchars($request->immatriculation);
             $request->marque = htmlspecialchars($request->marque);
             $request->model = htmlspecialchars($request->model);

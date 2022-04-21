@@ -29,7 +29,7 @@
                             <div class="mb-4 form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="remember">
-                                     <span style="color : rgb(251, 185, 34);">Remember</span>  me</label>
+                                     <span style="color : blueviolet;">Remember</span>  me</label>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('login') }}" class="btn submit">Go -></a>
