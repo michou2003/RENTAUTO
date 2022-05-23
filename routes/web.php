@@ -57,6 +57,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/dashboard/statistics/chiffre_affaire', 'chiffre_affaire')->name('chiffre_affaire');
     });
+    
+    //Il y a une erreur ici
 
     Route::controller(CarsController::class)->group(function () {
 
@@ -75,6 +77,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/dashboard/cars/update_car/{immatriculation}',  'update')->name('car.update');
     });
 
+    //Et ici...
+    
     Route::controller(DriversController::class)->group(function () {
 
         Route::get('/dashboard/drivers', 'drivers')->name('drivers');
@@ -96,6 +100,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/dashboard/drivers/tarif/',  'changer_tarif')->name('driver.tarif');
     });
 
+    //Et là aussi
+    
     Route::controller(LocationsController::class)->group(function () {
 
         Route::get('/dashboard/locations', 'locations')->name('locations');
@@ -115,6 +121,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard/locations/valider_paiement/{id}', 'validerPaiement')->name('location.valider_paiement');
     });
 });
+
+#STALK_
 
 
 require __DIR__ . '/auth.php';
